@@ -54,14 +54,6 @@
                 <div>
 
                     <div class="tabs_wrapper">
-                        <div class="tabs">
-                            <div>
-                                <div for="controls" class="selected">Crosshair</div>
-                                <div for="binds_tab">Binds</div>
-                                <div id="add_bind"
-                                    title="Add crosshair to binds">+</div>
-                            </div>
-                        </div>
                         <div class="tab_content">
                             <div class="selected" id="controls">
                                 <form autocomplete="off">
@@ -384,112 +376,6 @@
 
                                 </form>
                             </div>
-                            <div id="binds_tab">
-                                <form autocomplete="off">
-
-                                    <table id="binds_tab_table">
-                                        <tr>
-                                            <td>Crosshairs</td>
-                                            <td>
-                                                <table id="bind_crosshairs">
-                                                    <tbody>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr class="bind">
-                                                            <td>
-                                                                <input type="hidden"
-                                                                name="bind_crosshair" />
-                                                                <div class="bind_crosshair_canvas"></div>
-                                                            </td>
-                                                            <td><input
-                                                                name="bind_key" placeholder="Key" disabled="disabled" />
-                                                                <!-- <div
-                                                                    class="bind_key_more ui-state-default ui-corner-all">
-                                                                    <span
-                                                                        class="ui-icon ui-icon-carat-1-s"></span>
-                                                                </div> -->
-                                                                </td>
-                                                                <td>
-                                                                    <div class="bind_key_keyboard"><img src="img/keyboard.png" alt="keyboard"/></div>
-                                                                </td>
-                                                            <td clasS="bind_name"><input placeholder="Name"
-                                                                name="bind_name" disabled="disabled" /></td>
-                                                            <td>
-                                                                <div class="add_bind ui-state-default ui-corner-all" title="Add current crosshair">
-                                                                    <span class="ui-icon ui-icon-plus"></span>
-                                                                </div>
-                                                                <div class="remove_bind hide ui-state-default ui-corner-all" title="Remove crosshair bind">
-                                                                    <span class="ui-icon ui-icon-trash"></span>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </td>
-                                        <tr>
-                                            <td>Other</td>
-                                            <td>
-                                                <table id="bind_binds">
-                                                    <tbody>
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr class="bind">
-                                                            <td><div style="height: 19px; width: 21px;">&nbsp;</div></td>
-                                                            <td><input name="bind_key" placeholder="Key" disabled="disabled" />
-                                                            </td>
-                                                            <td>
-                                                                <div class="bind_key_keyboard hidden"><img src="img/keyboard.png" alt="keyboard"/></div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="bind_type">
-                                                                    <div class="bind_type_value"><i>Type</i></div>
-                                                                <div class="bind_type_drop bind_key_more ui-state-default ui-corner-all">
-                                                                    <span class="ui-icon ui-icon-carat-1-s"></span>
-                                                                </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="remove_bind hide ui-state-default ui-corner-all" title="Remove bind">
-                                                                    <span class="ui-icon ui-icon-trash"></span>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Autoexec
-                                                <div style="display: inline-block; cursor: pointer; vertical-align: middle; margin-left: 0.2em;" id="empty_autoexec" class="ui-state-default ui-corner-all" title="Remove all binds">
-                                                    <span class="ui-icon ui-icon-trash"></span>
-                                                </div>
-                                            </td>
-                                            <td><textarea spellcheck="false" id="binds_autoexes" rows="" cols="" wrap="off"></textarea>
-                                            <div class="tip">Copy textfield into your autoexec or paste your autoexec into textfield<br />Type 'binds' in console to get list of commands</div>
-                                            </td>
-                                        </tr>
-
-                                    </table>
-
-                                    <div id="bind_binds_type">
-                                        <div><a href="#" data-type="toggle">Toggle Crosshairs</a></div>
-                                        <div><a href="#" data-type="toggle_dot">Toggle Dot</a></div>
-                                        <div><a href="#" data-type="size_inc">Size Inc</a></div>
-                                        <div><a href="#" data-type="size_dec">Size Dec</a></div>
-                                        <div><a href="#" data-type="thickness_inc">Thickness Inc</a></div>
-                                        <div><a href="#" data-type="thickness_dec">Thickness Dec</a></div>
-                                        <div><a href="#" data-type="gap_inc">Gap Inc</a></div>
-                                        <div><a href="#" data-type="gap_dec">Gap Dec</a></div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                        <div class="tip" style="text-align: center;">
-                            Share crosshair by copying URL - <a
-                                href="http://www.hattongames.com/2012/06/how-to-create-an-autoexec-file-for-csgo/"
-                                target="_blank">How to create an autoexec</a>
                         </div>
 
                     </div>
@@ -505,40 +391,10 @@
                     rel="license"
                     href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"><img
                     alt="Creative Commons License" style="border-width: 0"
-                    src="img/cc.png" /></a> - <span title="<table><tr>
-                        <td>0.2
-
-                        <td>Default crosshair style can choose between
-                            predefined colors<br />Paste variables directly
-                            into console
-
-                    <tr>
-                        <td>0.3
-
-                        <td>Moved images to amazon
-
-                    <tr>
-                        <td>0.4
-
-                        <td>Added players to background<br />URL is updated
-                            less frequently<br />Changed hash splitters
-
-                    <tr>
-                        <td>0.5
-
-                        <td>Updated default crosshair representation and
-                            added fixedgap support
-                            <tr><td>0.6<td>Added binds feature (beta)
-                            <tr><td>0.7<td>Fixed crosshair bug<br />Added outline features
-                            </table>">Version 0.7</span> - Feedback: <a
-                    href="http://www.reddit.com/r/GlobalOffensive/comments/1473t5/ive_created_a_csgo_crosshair_generator/" target="_blank">Reddit</a>/<a
-                    href="http://forums.steampowered.com/forums/showthread.php?p=33511649#post33511649"
-                    target="_blank">Steam forum</a>/<a href="https://github.com/Skarbo/CSGOCrosshair/issues" target="_blank">GitHub</a>
+                    src="img/cc.png" /></a>
             </div>
 
         </div>
-
-        <?php include_once 'keyboard.php';?>
 
     </body>
 </html>
