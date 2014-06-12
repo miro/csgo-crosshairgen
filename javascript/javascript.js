@@ -430,84 +430,6 @@ $(function() {
 
 	canvas.crosshair = createCrosshair(layer, crosshair, center);
 
-	// canvas.crosshair.group = new Kinetic.Group({
-	// position : {
-	// x : center.x,
-	// y : center.y
-	// }
-	// });
-	// layer.add(canvas.crosshair.group);
-	// canvas.crosshair.group.moveToTop();
-	//
-	// // Crosshair classic
-	// canvas.crosshair.classic.group = new Kinetic.Group();
-	// canvas.crosshair.group.add(canvas.crosshair.classic.group);
-	// if (getCrosshairStyleType(crosshair.style) == "classic")
-	// canvas.crosshair.classic.group.show();
-	// else
-	// canvas.crosshair.classic.group.hide();
-	//
-	// var crosshairShape = new Kinetic.Rect({});
-	// canvas.crosshair.classic.left = crosshairShape.clone();
-	// canvas.crosshair.classic.right = crosshairShape.clone();
-	// canvas.crosshair.classic.top = crosshairShape.clone();
-	// canvas.crosshair.classic.bottom = crosshairShape.clone();
-	//
-	// canvas.crosshair.classic.dot = new Kinetic.Rect({});
-	//
-	// canvas.crosshair.classic.group.add(canvas.crosshair.classic.left);
-	// canvas.crosshair.classic.group.add(canvas.crosshair.classic.right);
-	// canvas.crosshair.classic.group.add(canvas.crosshair.classic.top);
-	// canvas.crosshair.classic.group.add(canvas.crosshair.classic.bottom);
-	// canvas.crosshair.classic.group.add(canvas.crosshair.classic.dot);
-	//
-	// // Crosshair default
-	// canvas.crosshair.def.group = new Kinetic.Group();
-	// canvas.crosshair.group.add(canvas.crosshair.def.group);
-	// if (getCrosshairStyleType(crosshair.style) == "default")
-	// canvas.crosshair.def.group.show();
-	// else
-	// canvas.crosshair.def.group.hide();
-	//
-	// var crosshairShapeDef = new Kinetic.Rect({
-	//
-	// });
-	// canvas.crosshair.def.left = new Kinetic.Polygon({
-	// points : [ 0, 0, -15, -2, -15, 2 ],
-	// offset : [ 10, 0 ],
-	// fill : "black"
-	// });
-	// canvas.crosshair.def.right = canvas.crosshair.def.left.clone();
-	// canvas.crosshair.def.top = canvas.crosshair.def.left.clone();
-	// canvas.crosshair.def.bottom = canvas.crosshair.def.left.clone();
-	//
-	// canvas.crosshair.def.dot = new Kinetic.Circle({
-	// x : 0,
-	// y : 0,
-	// radius : 2,
-	// shadow : {
-	// color : 'black',
-	// blur : 3,
-	// offset : [ 0, 0 ],
-	// opacity : 1
-	// }
-	// });
-	//
-	// canvas.crosshair.def.lines.left = crosshairShapeDef.clone();
-	// canvas.crosshair.def.lines.right = crosshairShapeDef.clone();
-	// canvas.crosshair.def.lines.top = crosshairShapeDef.clone();
-	// canvas.crosshair.def.lines.bottom = crosshairShapeDef.clone();
-	//
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.left);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.right);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.top);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.bottom);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.dot);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.lines.left);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.lines.right);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.lines.top);
-	// canvas.crosshair.def.group.add(canvas.crosshair.def.lines.bottom);
-
 	// /CROSSHAIR
 
 	// CONTROLS
@@ -1526,41 +1448,10 @@ function updateCrosshair(canvasCrosshair, crosshair, noAnimate) {
 	canvasCrosshair.classic.top.setStroke(outline ? "black" : null);
 
 	canvasCrosshair.classic.left.setAttrs(canvasCrosshair.classic.top.getAttrs());
-	// canvasCrosshair.classic.left.rotateDeg(-90);
 
 	canvasCrosshair.classic.right.setAttrs(canvasCrosshair.classic.top.getAttrs());
-	// canvasCrosshair.classic.right.rotateDeg(90);
 
 	canvasCrosshair.classic.bottom.setAttrs(canvasCrosshair.classic.top.getAttrs());
-	// canvasCrosshair.classic.bottom.rotateDeg(180);
-
-	// canvasCrosshair.classic.left.setPosition((calcThickness(crosshair.thickness)
-	// / 2 * -1) - calcGap(crosshair.gap), calcThickness(crosshair.thickness) /
-	// 2 * -1);
-	// canvasCrosshair.classic.left.setFill(color);
-	// canvasCrosshair.classic.left.setWidth(calcLength(crosshair.size) * -1);
-	// canvasCrosshair.classic.left.setHeight(calcThickness(crosshair.thickness));
-
-	// canvasCrosshair.classic.right.setPosition((calcThickness(crosshair.thickness)
-	// / 2) + calcGap(crosshair.gap), calcThickness(crosshair.thickness) / 2 *
-	// -1);
-	// canvasCrosshair.classic.right.setFill(color);
-	// canvasCrosshair.classic.right.setWidth(calcLength(crosshair.size));
-	// canvasCrosshair.classic.right.setHeight(calcThickness(crosshair.thickness));
-
-	// canvasCrosshair.classic.top.setPosition(calcThickness(crosshair.thickness)
-	// / 2 * -1, (calcThickness(crosshair.thickness) / 2 * -1) -
-	// calcGap(crosshair.gap));
-	// canvasCrosshair.classic.top.setFill(color);
-	// canvasCrosshair.classic.top.setWidth(calcThickness(crosshair.thickness));
-	// canvasCrosshair.classic.top.setHeight(calcLength(crosshair.size) * -1);
-
-	// canvasCrosshair.classic.bottom.setPosition(calcThickness(crosshair.thickness)
-	// / 2 * -1, (calcThickness(crosshair.thickness) / 2) +
-	// calcGap(crosshair.gap));
-	// canvasCrosshair.classic.bottom.setFill(color);
-	// canvasCrosshair.classic.bottom.setWidth(calcThickness(crosshair.thickness));
-	// canvasCrosshair.classic.bottom.setHeight(calcLength(crosshair.size));
 
 	canvasCrosshair.classic.dot.setPosition((calcThickness(crosshair.thickness) / 2 * -1), (calcThickness(crosshair.thickness) / 2 * -1));
 	canvasCrosshair.classic.dot.setFill(color);
@@ -1584,25 +1475,6 @@ function updateCrosshair(canvasCrosshair, crosshair, noAnimate) {
 	var hasLine = isCrosshairDynamic(crosshair.style);
 
 	canvasCrosshair.def.left.setPoints([ 0, 0, length * -1, width * -1, length * -1, width ]);
-	// canvasCrosshair.def.left.setFill({
-	// start : {
-	// x : 0,
-	// y : 0
-	// },
-	// end : {
-	// x : length * -1,
-	// y : 0
-	// },
-	// colorStops : COLOR.def[colorNr].cross,
-	//		
-	// fillLinearGradientStartPoint: [-50, -50],
-	// fillLinearGradientEndPoint: [50, 50],
-	// fillLinearGradientColorStops: [0, 'red', 1, 'yellow'],
-	// });
-	// canvasCrosshair.def.left.setFillEnabled(true);
-	// canvasCrosshair.def.left.setFillLinearGradientColorStops(true);
-	// canvasCrosshair.def.left.setFillLinearGradientEndPoint(true);
-	// canvasCrosshair.def.left.setFillLinearGradientColorStops(true);
 
 	canvasCrosshair.def.left.setAttrs({
 		fillLinearGradientStartPoint : [ 0, 0 ],
@@ -1612,13 +1484,10 @@ function updateCrosshair(canvasCrosshair, crosshair, noAnimate) {
 	canvasCrosshair.def.left.setOffset(gap, 0);
 
 	canvasCrosshair.def.right.setAttrs(canvasCrosshair.def.left.getAttrs());
-	// canvasCrosshair.def.right.rotateDeg(180);
 
 	canvasCrosshair.def.top.setAttrs(canvasCrosshair.def.left.getAttrs());
-	// canvasCrosshair.def.top.rotateDeg(90);
 
 	canvasCrosshair.def.bottom.setAttrs(canvasCrosshair.def.left.getAttrs());
-	// canvasCrosshair.def.bottom.rotateDeg(-90);
 
 	canvasCrosshair.def.dot.setFill(COLOR.def[colorNr].dot);
 
@@ -1630,13 +1499,10 @@ function updateCrosshair(canvasCrosshair, crosshair, noAnimate) {
 	canvasCrosshair.def.lines.top.show();
 
 	canvasCrosshair.def.lines.bottom.setAttrs(canvasCrosshair.def.lines.top.getAttrs());
-	// canvasCrosshair.def.lines.bottom.rotateDeg(180);
 
 	canvasCrosshair.def.lines.left.setAttrs(canvasCrosshair.def.lines.top.getAttrs());
-	// canvasCrosshair.def.lines.left.rotateDeg(-90);
 
 	canvasCrosshair.def.lines.right.setAttrs(canvasCrosshair.def.lines.top.getAttrs());
-	// canvasCrosshair.def.lines.right.rotateDeg(90);
 
 	canvasCrosshair.def.size = length + canvasCrosshair.def.left.getOffset().x;
 
@@ -1662,8 +1528,6 @@ function updateCrosshair(canvasCrosshair, crosshair, noAnimate) {
 		canvasCrosshair.classic.group.show();
 	}
 
-	// canvasCrosshair.def.group.getStage().draw();
-	// canvas.stage.getUserPosition(); //
 	canvas.stage.draw();
 }
 
