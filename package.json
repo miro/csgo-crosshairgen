@@ -1,0 +1,22 @@
+{
+  "name": "csgo-csrosshairgen",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miro/csgo-crosshairgen.git"
+  },
+  "contributors": [
+    "Miro Nieminen <miro.nieminen@gmail.com>"
+  ],
+  "dependencies": {
+  
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-connect": "*",
+    "grunt-sass": "~0.12.1",
+    "grunt-autoprefixer": "~0.7.3"
+  },
+  "private": true
+}

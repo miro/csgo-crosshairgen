@@ -1,0 +1,4 @@
+html {
+  background: url(../img/dustbg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover; }
