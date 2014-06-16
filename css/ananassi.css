@@ -1,0 +1,38 @@
+html {
+  background: url(../img/dustbg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+* {
+  font-family: "Helvetica Neue", arial, sans-serif;
+  font-size: 1em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  font-family: "Helvetica Neue", arial, sans-serif;
+  font-size: 15px; }
+
+#wrapper_table {
+  background-color: rgba(123, 66, 4, 0.6);
+  padding-bottom: 15px;
+  -webkit-box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5); }
+
+h1 {
+  display: block;
+  padding: 5px 10px;
+  margin: 2px auto 0 auto;
+  background-color: #E68217;
+  color: #FFF;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px; }
+
+p {
+  color: #FFF; }
+
+span.caption {
+  color: #FFF; }

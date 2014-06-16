@@ -1,7 +1,0 @@
-Testing first pull
-First hook
-Second hook
-Third hook
-Forth hook
-Fifth hook
-Sixth hook
