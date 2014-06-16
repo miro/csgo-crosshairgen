@@ -1,7 +1,19 @@
 html {
     background: url(../img/dustbg.jpg) no-repeat center center fixed;
     background-size: cover; 
+}
 
+* {
+    // Font styles needed here due to Chrome setting weird defaults without these 
+    font-family: "Helvetica Neue", arial, sans-serif;
+    font-size: 1em;
+
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", arial, sans-serif;
+    font-size: 15px;
 }
 
 // http://colorschemedesigner.com/#0B21TsOsOFfFf with different contrast
@@ -21,7 +33,7 @@ $lighter-blue: #8DC4D9;
 
 
 #wrapper_table {
-	background-color: rgba(123, 66, 4, 0.4); // $brown;
+	background-color: rgba(123, 66, 4, 0.6); // $brown;
     padding-bottom: 15px;
     box-shadow: 4px 4px 20px rgba(0,0,0,0.5);
 }
@@ -29,9 +41,14 @@ $lighter-blue: #8DC4D9;
 h1 {
 	display: block;
 	padding: 5px 10px;
-	margin: 2px auto;
+	margin: 2px auto 0 auto;
 	background-color: $orange;
 	color: #FFF;
+	text-align: center;
+	text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+
 }
 
 p {
