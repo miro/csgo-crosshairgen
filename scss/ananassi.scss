@@ -51,10 +51,25 @@ h1 {
 
 }
 
+
+
+
+
+
+// Random hacks for UI
 p {
 	color: #FFF;
 }
 
 span.caption {
 	color: #FFF;
+}
+
+
+tr.preset {
+    border-bottom: 1px solid black !important;
+}
+
+ul {
+    z-index: 9000;
 }
