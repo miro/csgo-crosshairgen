@@ -54,8 +54,6 @@ h1 {
 
 
 
-
-
 // Random hacks for UI
 p {
 	color: #FFF;
@@ -66,10 +64,15 @@ span.caption {
 }
 
 
-tr.preset {
-    border-bottom: 1px solid black !important;
+tr.preset td {
+    border-bottom: 2px solid black;
+    padding-bottom: 8px !important;
 }
 
 ul {
-    z-index: 9000;
+    z-index: 9001;
+}
+
+#crosshair_dot_wrapper label {
+    padding: 6px;
 }
