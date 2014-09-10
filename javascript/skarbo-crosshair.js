@@ -349,7 +349,7 @@ $(function() {
 			url: getAPIurl(),
 			type: 'GET',
 			success: function(response) {
-				if (!!response.Value && !!response.Config) {
+				if (!!response && !!response.Value && !!response.Config) {
 					configStorage.hash = response.Value;
 					configStorage.configString = response.Config;
 					changeCrosshair(getHash());
