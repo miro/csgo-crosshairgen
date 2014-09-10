@@ -322,7 +322,7 @@ var crosshairTimeout = null;
 var crosshairDrawTimeout = null;
 
 // This object will be synced with the backend
-var endpointUrl = 'http://csgo.azurewebsites.net/';
+var endpointUrl = 'http://gocfg.net/';
 var configStorage = {
 	hash: '',
 	configString: '',
