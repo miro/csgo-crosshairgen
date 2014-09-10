@@ -321,9 +321,47 @@ var animate = {
 var crosshairTimeout = null;
 var crosshairDrawTimeout = null;
 
+// This object will be synced with the backend
+var endpointUrl = 'http://csgo.azurewebsites.net/';
+var configStorage = {
+	hash: '',
+	configString: '',
+	key: null,
+	secretKey: null
+};
+
 $(function() {
 
 	// STAGE
+
+	// GET CONFIG FROM API
+	var initFunction = function init() {
+		var urlHash = window.location.hash.substring(1).split('/');
+		if (!urlHash[2] || !urlHash[4]) {
+			// no key&secret -pair found, abort
+			window.location(endpointUrl);
+		}
+
+		configStorage.key = urlHash[2];
+		configStorage.secretKey = urlHash[4];
+
+		$.ajax({
+			url: getAPIurl(),
+			type: 'GET',
+			success: function(response) {
+				if (!!response.Value && !!response.Config) {
+					configStorage.hash = response.Value;
+					configStorage.configString = response.Config;
+					changeCrosshair(getHash());
+				}
+			},
+			error: function(response) {
+				// Terminate
+				window.location(endpointUrl);
+			}
+		});
+
+	}();
 
 	canvas.canvas = $("#container");
 	canvas.canvas.empty();
@@ -407,6 +445,38 @@ $(function() {
 	// /CROSSHAIR
 
 	// CONTROLS
+
+	// Save -button
+	$('button#save').click(function(event) {
+		event.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url: getAPIurl(),
+			contentType: "application/json; charset=utf-8",
+
+			data: JSON.stringify({
+				Config: configStorage.configString,
+				Json: configStorage.hash
+			}),
+
+			success: function() {
+				console.log('saved succesfully');
+			},
+
+			error: function(response) {
+				console.log('error while saving crosshair');
+			}
+		});
+	});
+
+
+	// Back -button
+	$('button#back').click(function(event) {
+		event.preventDefault();
+		//window.location(getEditPageURL());
+		console.log(getEditPageURL());
+	});
+
 
 	// Crosshair style
 	var crosshairStyleFunc = function(type, dynamic) {
@@ -1060,6 +1130,7 @@ function updateControl() {
 function updateConfig() {
 	control.config.val(getCrosshairConfig(crosshair));
 	control.configConsole.val(getCrosshairConfig(crosshair, ";"));
+	configStorage.configString = getCrosshairConfig(crosshair, ";");
 }
 
 // /UPDATE
@@ -1112,7 +1183,7 @@ function changeConfig() {
 // HASH
 
 function getHash() {
-	var hash = window.location.hash.substring(1);
+	var hash = configStorage.hash;
 	var hashesArray = hash.split("/");
 	var hashesObject = {};
 	var hashArray;
@@ -1132,7 +1203,7 @@ function updateHash(hashObject) {
 			hashArray.push(key + "=" + hashNew[key]);
 		}
 	}
-	window.location.hash = "#" + hashArray.join("/");
+	configStorage.hash = hashArray.join("/");
 };
 
 // /HASH
@@ -1162,4 +1233,16 @@ function animateCrosshair(reset) {
 		}
 	}
 	updateCrosshair(canvas.crosshair, crosshair);
+}
+
+
+function getAPIurl() {
+	//Crosshair?viewkey={viewkey}&editkey={editkey}
+	return endpointUrl + 'api/Crosshair?' +
+		'viewkey=' + configStorage.key + 
+		'&editkey=' + configStorage.secretKey;
+}
+
+function getEditPageURL() {
+	return endpointUrl + 'edit/' + configStorage.key + '?key=' + configStorage.secretKey;
 }
