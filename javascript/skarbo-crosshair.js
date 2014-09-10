@@ -24,17 +24,7 @@ var GAP_PAD = 3;
 var SHADOW_BLUR = 0;
 var SHADOW_ALPHA = 0.9;
 var ANIMATE_GAP = 20;
-var BINDS_POST = {
-	CROSSHAIR : "&",
-	TOGGLE : "%",
-	TOGGLE_DOT : "*",
-	SIZE_INC : "(",
-	SIZE_DEC : ")",
-	THICKNESS_INC : "#",
-	THICKNESS_DEC : "@",
-	GAP_INC : ".",
-	GAP_DEC : ","
-};
+
 var COLOR = {
 	classic : {
 		1 : "#2EFA2E",
@@ -248,7 +238,6 @@ var TEMPLATE = {
 
 var canvas = {
 	canvas : null,
-	binds : {},
 	stage : null,
 	boundRect : null,
 	backgroundGroup : null,
@@ -331,21 +320,6 @@ var animate = {
 };
 var crosshairTimeout = null;
 var crosshairDrawTimeout = null;
-var binds = {
-	crosshair : {},
-	toggle : null,
-	toggle_dot : null,
-	size_inc : null,
-	size_dec : null,
-	thickness_inc : null,
-	thickness_dec : null,
-	gap_inc : null,
-	gap_dec : null
-};
-var binds_tab = {
-	binds : null,
-	autoexes : null
-};
 
 $(function() {
 
@@ -619,11 +593,6 @@ $(function() {
 	// Load crosshair from hash
 	changeCrosshair(getHash());
 
-	// Set autoexec from storage
-	if (localStorage.getItem('autoexec') != null) {
-		binds_tab.autoexes.val(localStorage.getItem('autoexec')).change();
-	}
-
 });
 
 function isCrosshairDynamic(style) {
@@ -683,188 +652,6 @@ function getCrosshairParsed(crosshairConfig) {
 	return crosshairNew;
 };
 
-function getBind(char) {
-	var key = String.fromCharCode(char);
-	var isWordcharacter = (char >= 48 && char <= 57) || (char >= 65 && char <= 90);
-	if (!isWordcharacter) {
-		key = "";
-		switch (char) {
-		case 1:
-			key = "mouse1";
-			break;
-		case 2:
-			key = "mouse3";
-			break;
-		case 3:
-			key = "mouse2";
-			break;
-		case 8:
-			key = "backspace";
-			break;
-		case 13:
-			key = "enter";
-			break;
-		case 16:
-			key = "shift";
-			break;
-		case 17:
-			key = "ctrl";
-			break;
-		case 18:
-			key = "alt";
-			break;
-		case 19:
-			key = "pause";
-			break;
-		case 20:
-			key = "capslock";
-			break;
-		case 27:
-			key = "escape";
-			break;
-		case 32:
-			key = "space";
-			break;
-		case 33:
-			key = "pgup";
-			break;
-		case 34:
-			key = "pgdn";
-			break;
-		case 35:
-			key = "end";
-			break;
-		case 36:
-			key = "home";
-			break;
-		case 37:
-			key = "leftarrow";
-			break;
-		case 38:
-			key = "uparrow";
-			break;
-		case 39:
-			key = "rightarrow";
-			break;
-		case 40:
-			key = "downarrow";
-			break;
-		case 45:
-			key = "ins";
-			break;
-		case 46:
-			key = "del";
-			break;
-		case 59:
-			key = "semicolon";
-			break;
-		case 61:
-			key = "=";
-			break;
-		case 96:
-			key = "KP_INS";
-			break;
-		case 97:
-			key = "KP_END";
-			break;
-		case 98:
-			key = "KP_DOWNARROW";
-			break;
-		case 99:
-			key = "KP_PGDN";
-			break;
-		case 100:
-			key = "KP_LEFTARROW";
-			break;
-		case 101:
-			key = "KP_5";
-			break;
-		case 102:
-			key = "KP_RIGHTARROW";
-			break;
-		case 103:
-			key = "KP_HOME";
-			break;
-		case 104:
-			key = "KP_UPARROW";
-			break;
-		case 105:
-			key = "KP_PGUP";
-			break;
-		case 106:
-			key = "KP_MULTIPLY";
-			break;
-		case 107:
-			key = "KP_PLUS";
-			break;
-		case 109:
-			key = "KP_MINUS";
-			break;
-		case 110:
-			key = "KP_DEL";
-			break;
-		case 111:
-			key = "KP_SLASH";
-			break;
-		case 173:
-			key = "-";
-			break;
-		case 188:
-			key = ",";
-			break;
-		case 190:
-			key = ".";
-			break;
-		case 191:
-			key = "/";
-			break;
-		case 192:
-			key = "`";
-			break;
-		case 220:
-			key = "\\";
-			break;
-		case 219:
-			key = "[";
-			break;
-		case 221:
-			key = "]";
-			break;
-		case 222:
-			key = "'";
-			break;
-		}
-		// F-key
-		if (char >= 112 && char <= 123) {
-			var f = char - 111;
-			key = "F" + f;
-		}
-	}
-
-	return key.toUpperCase();
-}
-
-function getBindTypeTitle(type) {
-	switch (type) {
-	case "toggle":
-		return "Toggle Crosshairs";
-	case "toggle_dot":
-		return "Toggle Dot";
-	case "size_inc":
-		return "Size Inc";
-	case "size_dec":
-		return "Size Dec";
-	case "thickness_inc":
-		return "Thickness Inc";
-	case "thickness_dec":
-		return "Thickness Dec";
-	case "gap_inc":
-		return "Gap Inc";
-	case "gap_dec":
-		return "Gap Dec";
-	}
-	return "";
-}
 
 function getCrosshairConfig(crosshair, splitter, quote) {
 	splitter = splitter || "\n";
@@ -1275,183 +1062,10 @@ function updateConfig() {
 	control.configConsole.val(getCrosshairConfig(crosshair, ";"));
 }
 
-function updateBindsCrosshair(id, bind) {
-	if (id)
-		binds.crosshair[id] = binds.crosshair[id] ? jQuery.extend(true, binds.crosshair[id], bind) : bind;
-	updateBinds();
-}
-
-function updateBinds() {
-	var autoexes = keyBinds = aliases = "";
-	var crosshairString = crosshairThicknessNext = crosshairThicknessPrev = crosshairSizeNext = crosshairSizePrev = crosshairGapNext = crosshairGapPrev = toggleCrosshairBind = "";
-	var toggleCrosshair = [];
-	var aliasBinds = [];
-	for (id in binds.crosshair) {
-		if (binds.crosshair[id].key && binds.crosshair[id].name) {
-			crosshairString = getCrosshairConfig(binds.crosshair[id].crosshair, ";", "");
-			crosshairThicknessNext = bound((round5(binds.crosshair[id].crosshair.thickness * 10) / 10) + 0.5, 0, 30);
-			crosshairThicknessPrev = bound((round5(binds.crosshair[id].crosshair.thickness * 10) / 10) - 0.5, 0, 30);
-			crosshairSizeNext = bound(Math.round(binds.crosshair[id].crosshair.size) + 1, 0, 30);
-			crosshairSizePrev = bound(Math.round(binds.crosshair[id].crosshair.size) - 1, 0, 30);
-			crosshairGapNext = bound(Math.round(binds.crosshair[id].crosshair.gap) + 1, -25, 25);
-			crosshairGapPrev = bound(Math.round(binds.crosshair[id].crosshair.gap) - 1, -25, 25);
-
-			aliases += "alias \"" + binds.crosshair[id].name + "\" \"" + crosshairString;
-			if (binds.size_inc)
-				aliases += "bind " + binds.size_inc + " size_" + crosshairSizeNext + ";";
-			if (binds.size_dec)
-				aliases += "bind " + binds.size_dec + " size_" + crosshairSizePrev + ";";
-			if (binds.thickness_inc)
-				aliases += "bind " + binds.thickness_inc + " thick_" + ("" + crosshairThicknessNext).replace(".", "_") + ";";
-			if (binds.thickness_dec)
-				aliases += "bind " + binds.thickness_dec + " thick_" + ("" + crosshairThicknessPrev).replace(".", "_") + ";";
-			if (binds.gap_inc)
-				aliases += "bind " + binds.gap_inc + " gap_" + ("" + crosshairGapNext).replace("-", "_") + ";";
-			if (binds.gap_dec)
-				aliases += "bind " + binds.gap_dec + " gap_" + ("" + crosshairGapPrev).replace("-", "_") + ";";
-
-			aliases += "\" //" + BINDS_POST.CROSSHAIR + id + "\n";
-			keyBinds += "bind \"" + binds.crosshair[id].key + "\" \"" + binds.crosshair[id].name + "\" // Chrosshair '" + binds.crosshair[id].name + "'\n";
-			toggleCrosshair.push(id);
-
-			aliasBinds.push("'" + binds.crosshair[id].key + "': Crosshair '" + binds.crosshair[id].name + "'");
-		}
-	}
-
-	var toggle = "";
-	if (binds.toggle && toggleCrosshair.length > 0) {
-		var id = toggleCrosshairCurrent = toggleCrosshairNext = toggleCrosshairFirst = null;
-		var toggleCrosshairKey = binds.toggle;
-		for ( var i = 0; i < toggleCrosshair.length; i++) {
-			id = toggleCrosshair[i];
-			toggleCrosshairCurrent = binds.crosshair[id].name;
-			if (i == 0)
-				toggleCrosshairFirst = toggleCrosshairCurrent;
-			toggleCrosshairNext = toggleCrosshair[i + 1] != undefined ? binds.crosshair[toggleCrosshair[i + 1]].name : toggleCrosshairFirst;
-			toggle += "alias \"toggle_" + toggleCrosshairCurrent + "\" \"" + toggleCrosshairCurrent + ";bind " + toggleCrosshairKey + " toggle_" + toggleCrosshairNext + ";\"\n";
-		}
-		toggle += "bind \"" + toggleCrosshairKey + "\" \"toggle_" + toggleCrosshairFirst + "\" // Toggle crosshairs\n";
-		toggle += "\n";
-
-		aliasBinds.push("'" + toggleCrosshairKey + "': Toggle " + toggleCrosshair.length + " crosshairs");
-	}
-
-	var dot = "";
-	if (binds.toggle_dot) {
-		dot = "alias \"dot_on\" \"cl_crosshairdot 1; bind " + binds.toggle_dot + " dot_off;\"\n";
-		dot += "alias \"dot_off\" \"cl_crosshairdot 0; bind " + binds.toggle_dot + " dot_on;\"\n";
-		dot += "bind \"" + binds.toggle_dot + "\" \"dot_on\" // Toggle crosshair dot\n";
-		dot += "\n";
-
-		aliasBinds.push("'" + binds.toggle_dot + "': Toggle crosshair dot");
-	}
-
-	var size = "";
-	if (binds.size_inc || binds.size_dec) {
-		var sizeIncNext = sizeIncPrev = null;
-		var sizeIncKey = binds.size_inc;
-		var sizeDecKey = binds.size_dec;
-		for ( var i = 0; i <= 30; i++) {
-			sizeIncNext = i < 30 ? i + 1 : 0;
-			sizeIncPrev = i > 0 ? i - 1 : 30;
-			size += "alias \"size_" + i + "\" \"cl_crosshairsize " + i + ";";
-			if (sizeIncKey)
-				size += "bind " + sizeIncKey + " size_" + sizeIncNext + ";";
-			if (sizeDecKey)
-				size += "bind " + sizeDecKey + " size_" + sizeIncPrev + ";";
-			size += "\"\n";
-		}
-		if (sizeIncKey) {
-			size += "bind \"" + sizeIncKey + "\" \"size_0\" // Increase crosshair size\n";
-			aliasBinds.push("'" + sizeIncKey + "': Increase crosshair size");
-		}
-		if (sizeDecKey) {
-			size += "bind \"" + sizeDecKey + "\" \"size_30\" // Decrease crosshair size\n";
-			aliasBinds.push("'" + sizeDecKey + "': Decrease crosshair size");
-		}
-		size += "\n";
-
-	}
-
-	var thickness = "";
-	if (binds.thickness_inc || binds.thickness_dec) {
-		var thicknessIncNext = thicknessIncPrev = null;
-		var thicknessIncKey = binds.thickness_inc;
-		var thicknessDecKey = binds.thickness_dec;
-		for ( var i = 0; i <= 30; i += 0.5) {
-			thicknessIncNext = ("" + (i < 30 ? i + 0.5 : 0)).replace(".", "_");
-			thicknessIncPrev = ("" + (i > 0 ? i - 0.5 : 30)).replace(".", "_");
-			thickness += "alias \"thick_" + ("" + i).replace(".", "_") + "\" \"cl_crosshairthickness " + i + ";";
-			if (thicknessIncKey)
-				thickness += "bind " + thicknessIncKey + " thick_" + thicknessIncNext + ";";
-			if (thicknessDecKey)
-				thickness += "bind " + thicknessDecKey + " thick_" + thicknessIncPrev + ";";
-			thickness += "\"\n";
-		}
-		if (thicknessIncKey) {
-			thickness += "bind \"" + thicknessIncKey + "\" \"thick_0\" // Increase crosshair thickness\n";
-			aliasBinds.push("'" + thicknessIncKey + "': Increase crosshair thickness");
-		}
-		if (thicknessDecKey) {
-			thickness += "bind \"" + thicknessDecKey + "\" \"thick_30\" // Decrease crosshair thickness\n";
-			aliasBinds.push("'" + thicknessDecKey + "': Decrease crosshair thickness");
-		}
-		thickness += "\n";
-	}
-
-	var gap = "";
-	if (binds.gap_inc || binds.gap_dec) {
-		var gapIncNext = gapIncPrev = null;
-		var gapIncKey = binds.gap_inc;
-		var gapDecKey = binds.gap_dec;
-		for ( var i = -25; i <= 25; i++) {
-			gapIncNext = ("" + bound(i + 1, -25, 25)).replace("-", "_");
-			gapIncPrev = ("" + bound(i - 1, -25, 25)).replace("-", "_");
-			gap += "alias \"gap_" + ("" + i).replace("-", "_") + "\" \"cl_crosshairgap " + i + ";cl_fixedcrosshairgap " + i + ";";
-			if (gapIncKey)
-				gap += "bind " + gapIncKey + " gap_" + gapIncNext + ";";
-			if (gapDecKey)
-				gap += "bind " + gapDecKey + " gap_" + gapIncPrev + ";";
-			gap += "\"\n";
-		}
-		if (gapIncKey) {
-			gap += "bind \"" + gapIncKey + "\" \"gap_0\" // Increase crosshair gap\n";
-			aliasBinds.push("'" + gapIncKey + "': Increase crosshair gap");
-		}
-		if (gapDecKey) {
-			gap += "bind \"" + gapDecKey + "\" \"gap_25\" // Decrease crosshair gap\n";
-			aliasBinds.push("'" + gapDecKey + "': Decrease crosshair gap");
-		}
-		gap += "\n";
-	}
-
-	autoexes += aliases;
-	autoexes += "\n";
-	autoexes += keyBinds;
-	autoexes += "\n";
-	autoexes += toggle;
-	autoexes += dot;
-	autoexes += size;
-	autoexes += thickness;
-	autoexes += gap;
-	autoexes = jQuery.trim(autoexes);
-
-	if (autoexes != "") {
-		var aliasBindsString = "\n\nalias \"binds\" \"";
-		for ( var i in aliasBinds) {
-			aliasBindsString += "echo " + aliasBinds[i] + ";";
-		}
-		aliasBindsString += "\"";
-		autoexes += aliasBindsString;
-	}
-
-	binds_tab.autoexes.val(autoexes);
-	localStorage.setItem('autoexec', autoexes);
-}
-
 // /UPDATE
 
 // CHANGE
+
 
 function changeCrosshair(change) {
 	for (type in change) {
