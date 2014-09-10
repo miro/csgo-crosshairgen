@@ -473,8 +473,7 @@ $(function() {
 	// Back -button
 	$('button#back').click(function(event) {
 		event.preventDefault();
-		//window.location(getEditPageURL());
-		console.log(getEditPageURL());
+		window.location.href = getEditPageURL();
 	});
 
 
