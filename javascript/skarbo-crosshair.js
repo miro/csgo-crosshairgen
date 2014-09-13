@@ -460,11 +460,11 @@ $(function() {
 			}),
 
 			success: function() {
-				console.log('saved succesfully');
+				triggerNotification({message: 'Crosshair saved succesfully'});
 			},
 
 			error: function(response) {
-				console.log('error while saving crosshair');
+				triggerNotification({message: 'Error while trying to save Crosshair. Try again', type: 'error'});
 			}
 		});
 	});
