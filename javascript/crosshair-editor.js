@@ -1,9 +1,9 @@
 
 
 // This object will be synced with the backend
-var endpointUrl = 'http://gocfg.net/';
+var endpointUrl = 'http://csgo.azurewebsites.net/';
 var configStorage = {
-	hash: 'alpha=200/color=5/color_b=50/color_r=50/color_g=250/dot=0/gap=0/size=5/style=2/usealpha=1/thickness=0.5/outline=0/outline_draw=0',
+	hash: 'alpha=200/color=5/color_b=50/color_r=50/color_g=250/dot=0/gap=0/size=5/style=2/usealpha=1/thickness=1/outline=0/outline_draw=0',
 	configString: '',
 	key: null,
 	secretKey: null
