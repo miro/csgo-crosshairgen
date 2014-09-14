@@ -132,6 +132,11 @@ $(function() {
 	// Save -button
 	$('button#save').click(function(event) {
 		event.preventDefault();
+
+		// Get the latest hash before doing anything
+		configStorage.hash = getUpdatedHash(crosshair, configStorage.hash);
+		updateConfig();
+
 		$.ajax({
 			type: 'POST',
 			url: getAPIurl(configStorage.key, configStorage.secretKey),
