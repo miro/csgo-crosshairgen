@@ -315,22 +315,6 @@ $(function() {
 
 	// /UPDATE HASH
 
-	// TABS
-
-	var tabs = $(".tabs");
-	tabs.find("* >*[for]").click({
-		tabs : tabs,
-		content : $(".tab_content")
-	}, function(event) {
-		var id = $(event.target).attr("for");
-		event.data.tabs.find("* >*").removeClass("selected");
-		$(event.target).addClass("selected");
-		event.data.content.children().removeClass("selected").filter("#" + id).addClass("selected");
-	});
-
-	// /TABS
-	
-
 	// Tooltip
 	$(document).tooltip();
 
@@ -424,8 +408,6 @@ function createControlSlider(type, max, min, step) {
 
 
 
-
-
 // CHANGE
 
 
@@ -447,7 +429,6 @@ function changeConfig() {
 	else
 		updateConfig();
 }
-
 
 // /CHANGE
 
