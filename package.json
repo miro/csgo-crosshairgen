@@ -9,14 +9,15 @@
     "Miro Nieminen <miro.nieminen@gmail.com>"
   ],
   "dependencies": {
-  
   },
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-connect": "*",
     "grunt-sass": "~0.12.1",
-    "grunt-autoprefixer": "~0.7.3"
+    "grunt-autoprefixer": "~0.7.3",
+    "express": "~4.9.0",
+    "morgan": "~1.3.1"
   },
   "private": true
 }
