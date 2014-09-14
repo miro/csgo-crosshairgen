@@ -39,8 +39,13 @@ $(function() {
 				window.location(endpointUrl);
 			}
 		});
-
 	}();
+
+
+	// Bind the "click to hide" -function to notification box
+	$('.notification-box').click(function() {
+		hideNotification();
+	});
 
 	canvas.canvas = $("#container");
 	canvas.canvas.empty();
@@ -431,12 +436,3 @@ function changeConfig() {
 }
 
 // /CHANGE
-
-
-
-// Bind the "click to hide" -function to notification box
-$(document).ready(function() {
-	$('.notification-box').click(function() {
-		hideNotification();
-	});
-});
